@@ -1,6 +1,7 @@
 import React from "react";
-import MOCK_DATA from "../mock.js"; // 여기를 꼭 추가하세요!
 import styled from "styled-components";
+import { usePokemon } from "../contexts/PokemonContext";
+import MOCK_DATA from "../mock.js";
 
 const SelectedContainer = styled.div`
   width: 90%;
@@ -69,7 +70,9 @@ const Number = styled.p`
   font-size: 0.85rem;
 `;
 
-export default function Dashboard({ slots, onRemove }) {
+export default function Dashboard() {
+  const { slots, removePokemon } = usePokemon();
+
   return (
     <SelectedContainer>
       {slots.map((id, idx) => {
@@ -80,11 +83,11 @@ export default function Dashboard({ slots, onRemove }) {
               <SelectedImage
                 src={p.img_url}
                 alt={p.korean_name}
-                onClick={() => onRemove(p)}
+                onClick={() => removePokemon(p)}
               />
               <Name>{p.korean_name}</Name>
               <Number>No. {String(p.id).padStart(3, "0")}</Number>
-              <RemoveButton onClick={() => onRemove(p)}>삭제</RemoveButton>
+              <RemoveButton onClick={() => removePokemon(p)}>삭제</RemoveButton>
             </SelectedCard>
           );
         }

@@ -1,5 +1,5 @@
 import React from "react";
-import MOCK_DATA from "../mock.js"; // 여기를 꼭 추가하세요!
+import MOCK_DATA from "../mock.js";
 import styled from "styled-components";
 
 const SelectedContainer = styled.div`

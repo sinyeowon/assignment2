@@ -11,27 +11,44 @@ const PokemonSet = styled.div`
   text-align: center;
 `;
 
+const PokemonImage = styled.img`
+  width: 100%;
+  cursor: pointer;
+`;
+
+const PokemonName = styled.h4`
+  margin: 8px 0 4px;
+`;
+
+const PokemonNumber = styled.p`
+  margin: 0;
+  color: #666;
+  font-size: 0.85rem;
+`;
+
 const SelectButton = styled.button`
-  background-color: green;
+  background-color: ${(props) => (props.disabled ? "#ccc" : "green")};
   color: white;
   border-radius: 5px;
-  margin: 5px;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 8px;
+  cursor: ${(props) => (props.disabled ? "default" : "pointer")};
 `;
 
 export default function PokemonCard({ pokemon, isCaught, onAdd }) {
   const nav = useNavigate();
+
   return (
     <PokemonSet>
-      <img
+      <PokemonImage
         src={pokemon.img_url}
         alt={pokemon.korean_name}
-        width="100%"
-        style={{ cursor: "pointer" }}
         onClick={() => nav(`/detail?id=${pokemon.id}`)}
       />
-      <h4>{pokemon.korean_name}</h4>
-      <p>No. {String(pokemon.id).padStart(3, "0")}</p>
-      <SelectButton onClick={() => onAdd(pokemon)}>
+      <PokemonName>{pokemon.korean_name}</PokemonName>
+      <PokemonNumber>No. {String(pokemon.id).padStart(3, "0")}</PokemonNumber>
+      <SelectButton onClick={() => onAdd(pokemon)} disabled={isCaught}>
         {isCaught ? "✔ 선택됨" : "추가"}
       </SelectButton>
     </PokemonSet>

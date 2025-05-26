@@ -1,1 +1,1 @@
-https://assignment2-kohl-three.vercel.app/home
+https://assignment2-kohl-three.vercel.app
